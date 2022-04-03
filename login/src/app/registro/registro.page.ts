@@ -18,7 +18,7 @@ export class RegistroPage implements OnInit {
    const user=await this.authSvc.onRegister(this.user);
    if(user){
      console.log('Successfully');
-     this.router.navigateByUrl('/');
+     this.router.navigateByUrl('/home');
    }
  }
 }
