@@ -1,25 +1,43 @@
+
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Registro</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+- <form> 
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email" name="email" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input> 
+  </ion-item>
 
-<ion-content padding>
-<ion-item>
-  <ion-label>
-    Email
-  </ion-label>
-  <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label>
-    Password
-  </ion-label>
-  <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-</ion-item>
-<ion-item-divider>
-  <ion-button size="large" (click)="onRegister()">Registro</ion-button>
-  <ion-button size="large" routerLink="/login">Login</ion-button>
+    <ion-row>
+      <ion-col>
+        <ion-button  type="submit" color="danger" expand="block" (click)="onRegister()">Registrar</ion-button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
 
-</ion-item-divider>
-</ion-content>
+    <ion-col>
+      Ya tienes usuario?
+      <ion-button color="danger" expand="block" routerLink="/login">Ingresar</ion-button>
+    </ion-col>
+  </ion-row>
+ </form> 
+ </ion-content>

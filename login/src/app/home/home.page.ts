@@ -12,11 +12,8 @@ export class HomePage {
   constructor(private authSvc:AuthService,private router:Router,private afAuth:AngularFireAuth) { }
 
 
-  ngOnInit() {
-  }
   onLogOut(){
     console.log('Salir');
-    this.afAuth.signOut();
-    this.router.navigateByUrl('/login');
+    this.authSvc.signOut();
   }
 }

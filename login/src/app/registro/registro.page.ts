@@ -7,18 +7,14 @@ import { User } from '../shared/user.class';
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage  {
   user:User= new User();
   constructor(private authSvc:AuthService,private router:Router) { }
 
-  ngOnInit() {
-  }
+
  async onRegister()
  {
    const user=await this.authSvc.onRegister(this.user);
-   if(user){
-     console.log('Successfully');
-     this.router.navigateByUrl('/home');
-   }
+  
  }
 }

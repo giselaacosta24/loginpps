@@ -7,19 +7,19 @@ import { User } from '../shared/user.class';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   user:User= new User();
   constructor(private authSvc:AuthService,private router:Router) { }
 
 
-  ngOnInit() {
-  }
+ 
   async onLogin()
   {
     const user=await this.authSvc.onLogin(this.user);
-    if(user){
-      console.log('Successfully');
-      this.router.navigateByUrl('/');
-    }
+    console.log(this.user.email);
+    console.log(this.user.password);
+
+    console.log('login component');
+
   }
 }
