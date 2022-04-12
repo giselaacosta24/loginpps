@@ -14,32 +14,40 @@ export class AuthService {
 
 
 
-  onLogin(user:User) {
-    this.afAuth.signInWithEmailAndPassword(user.email,user.password)
-    .then(value => {
-      console.log('Funcionó,usuario logueado');
-      this.isLoggged=true;
-      this.router.navigateByUrl('/home');
-    })
-    .catch(err => {
-      console.log('Algo esta mal: ', err.message);
-    });
+  // onLogin(user:User) {
+  //   this.afAuth.signInWithEmailAndPassword(user.email,user.password)
+  //   .then(value => {
+  //     console.log('Funcionó,usuario logueado');
+  //     this.isLoggged=true;
+  //     this.router.navigateByUrl('/home');
+  //   })
+  //   .catch(err => {
+  //     console.log('Algo esta mal: ', err.message);
+  //   });
+  // }
+
+  async onLogin(usuario:User){
+    try{
+      return await this.afAuth.signInWithEmailAndPassword(usuario.email,usuario.password);
+    }
+    catch(error)
+    {
+    console.log('Error en login',error)
+
+    }
   }
 
-  onRegister(user:User){
-    this.afAuth.createUserWithEmailAndPassword(user.email,user.password)
-    .then(value => {
-      console.log('Funcionó,usuario registrado');
-      
-      this.isLoggged=true;
+  async onRegister(usuario:User){
+     try{
+      return await this.afAuth.createUserWithEmailAndPassword(usuario.email,usuario.password);
+     }
+     catch(error)
+     {
+     console.log('Error en registro',error)
 
-      this.router.navigateByUrl('/home');
-      
-    })
-    .catch(err => {
-      console.log('Algo esta mal: ', err.message);
-    });
+    }
   }
+
 
   signOut() {
     this.afAuth.signOut()

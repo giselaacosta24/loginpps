@@ -1,25 +1,77 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
-import { User } from '../shared/user.class';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
-  user:User= new User();
-  constructor(private authSvc:AuthService,private router:Router) { }
 
+export class LoginPage implements OnInit {
 
- 
-  async onLogin()
-  {
-    const user=await this.authSvc.onLogin(this.user);
-    console.log(this.user.email);
-    console.log(this.user.password);
+  userForm: FormGroup;
+  successMsg: string = '';
+  errorMsg: string = '';
+  
 
-    console.log('login component');
+  error_msg = {
+    'email': [
+      { 
+        type: 'required', 
+        message: 'Ingrese correo.' 
+      },
+      { 
+        type: 'pattern', 
+        message: 'Correo no válido.' 
+      }
+    ],
+    'password': [
+      { 
+        type: 'required', 
+        message: 'Contraseña requerida.' 
+      },
+      { 
+        type: 'minlength', 
+        message: 'Contraseña no cumple con los valores minimos.' 
+      }
+    ]
+  };
 
+  constructor(
+    private router: Router,
+    private ionicAuthService: AuthService,
+    private fb: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])),
+    });
   }
+
+  Login(value) {
+    this.ionicAuthService.onLogin(value)
+      .then((response) => {
+        console.log(response)
+        this.errorMsg = "";
+        this.router.navigateByUrl('admin');
+      }, error => {
+        this.errorMsg = error.message;
+        this.successMsg = "";
+      })
+  }
+
+  registro() {
+    this.router.navigateByUrl('registro');
+  }
+
 }

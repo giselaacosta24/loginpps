@@ -1,33 +1,36 @@
-
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Log In</ion-title>
+  <ion-toolbar color="success">
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input type="text"  [(ngModel)]="user.email" name="email"  required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" (click)="onLogin()" expand="block">Ingresar</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
 
-      <ion-col>
-        No tienes usuario?
-        <ion-button color="danger" expand="block" routerLink="/registro">Registrar</ion-button>
-      </ion-col>
-    </ion-row>
+<ion-content class="ion-padding">
+  <form class="form" [formGroup]="userForm" (ngSubmit)="Login(userForm.value)">
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    
+    <ng-container *ngFor="let error of error_msg.email">
+      <div *ngIf="userForm.get('email').hasError(error.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+        {{ error.message }}
+      </div>
+    </ng-container>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+    </ion-item>
+    
+    <ng-container *ngFor="let error of error_msg.password">
+        <div *ngIf="userForm.get('password').hasError(error.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+          {{ error.message }}
+        </div>
+    </ng-container>
+
+    <ion-button type="submit" expand="block" [disabled]="!userForm.valid">Ingresar</ion-button>
+    
+    <label class="ion-text-center" color="danger">{{errorMsg}}</label>
   </form>
+  <p class="ion-text-center">No esta registrado aun? <a (click)="registro()">Registro</a></p>
 </ion-content>
