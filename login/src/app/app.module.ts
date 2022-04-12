@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { CommonModule } from '@angular/common'
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -13,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { environment } from './../environments/environment';
-import { LoginPage } from './login/login.page';
+// import { LoginPage } from './login/login.page';
 
 
 
@@ -26,7 +27,8 @@ import { LoginPage } from './login/login.page';
   AngularFireModule.initializeApp(environment.firebaseConfig),
  AngularFireAuthModule,
  FormsModule,
- ReactiveFormsModule],
+ ReactiveFormsModule,
+CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

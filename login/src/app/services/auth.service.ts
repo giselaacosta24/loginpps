@@ -14,20 +14,10 @@ export class AuthService {
 
 
 
-  // onLogin(user:User) {
-  //   this.afAuth.signInWithEmailAndPassword(user.email,user.password)
-  //   .then(value => {
-  //     console.log('Funcionó,usuario logueado');
-  //     this.isLoggged=true;
-  //     this.router.navigateByUrl('/home');
-  //   })
-  //   .catch(err => {
-  //     console.log('Algo esta mal: ', err.message);
-  //   });
-  // }
-
   async onLogin(usuario:User){
     try{
+      this.isLoggged=true;
+
       return await this.afAuth.signInWithEmailAndPassword(usuario.email,usuario.password);
     }
     catch(error)
@@ -39,6 +29,8 @@ export class AuthService {
 
   async onRegister(usuario:User){
      try{
+      this.isLoggged=true;
+
       return await this.afAuth.createUserWithEmailAndPassword(usuario.email,usuario.password);
      }
      catch(error)

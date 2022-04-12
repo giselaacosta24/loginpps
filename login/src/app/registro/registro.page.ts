@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-registro',
@@ -65,7 +66,7 @@ export class RegistroPage implements OnInit {
       .then((response) => {
         this.errorMsg = "";
         this.successMsg = "Nuevo usuario creado.";
-        this.router.navigateByUrl('admin');
+        this.router.navigateByUrl('home');
       }, error => {
         this.errorMsg = error.message;
         this.successMsg = "";

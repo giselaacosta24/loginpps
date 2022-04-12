@@ -13,8 +13,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
    if(this.authSvc.isLoggged)
    {
+    console.log(this.authSvc.isLoggged);
+
      return true;
    }
+   console.log(this.authSvc.isLoggged);
+
    console.log('Acceso denegado');
    this.router.navigateByUrl('/login');
       // return false;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginPage implements OnInit {
   errorMsg: string = '';
   
 
+ 
   error_msg = {
     'email': [
       { 
@@ -59,11 +61,12 @@ export class LoginPage implements OnInit {
   }
 
   Login(value) {
+    console.log(value);
     this.ionicAuthService.onLogin(value)
       .then((response) => {
         console.log(response)
         this.errorMsg = "";
-        this.router.navigateByUrl('admin');
+        this.router.navigateByUrl('home');
       }, error => {
         this.errorMsg = error.message;
         this.successMsg = "";
