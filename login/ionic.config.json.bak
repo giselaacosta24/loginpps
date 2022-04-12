@@ -1,5 +1,5 @@
 {
-  "name": "pruebaApp",
+  "name": "login",
   "integrations": {
     "capacitor": {
       "enabled": false

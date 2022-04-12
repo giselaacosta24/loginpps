@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "pruebaApp",
+	"appName": "login",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
