@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
+// import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+import { Platform } from '@ionic/angular';
+// import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private platform: Platform,
+    public router:Router
+  ) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+
+      this.router.navigateByUrl('splash');
+    });
+  }
 }

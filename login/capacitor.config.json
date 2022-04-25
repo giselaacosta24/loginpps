@@ -2,5 +2,23 @@
 	"appId": "io.ionic.starter",
 	"appName": "pruebaApp",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"pluggins":{
+		"SplashScreen":{
+			"launchShowDuration": 0,
+
+			"launchAutoHide": false,
+		  
+			"androidScaleType": "CENTER_INSIDE",
+		  
+			"splashFullScreen": false,
+		  
+			"splashImmersive": false,
+		  
+			"backgroundColor": "#1C3461",
+		  
+			"androidSplashResourceName": "splash"
+				  }
+	}
+	
 }

@@ -44,8 +44,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private ionicAuthService: AuthService,
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder ) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -72,6 +71,9 @@ export class LoginPage implements OnInit {
         this.successMsg = "";
       })
   }
+ ionViewDidEnter() {
+    console.log('This runs as it should');
+   }
 
   registro() {
     this.router.navigateByUrl('registro');
